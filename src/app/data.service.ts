@@ -6,6 +6,7 @@ export interface Product {
   bestBeforeDate: Date;
   qualityCode: string;
   lotNumber: string;
+  [key: string]: string | Date;
 }
 
 @Injectable({
@@ -14,7 +15,6 @@ export interface Product {
 export class DataService {
   private products: Product[] = [
     // Add your sample data here
-    {}
   ];
 
   constructor() {}

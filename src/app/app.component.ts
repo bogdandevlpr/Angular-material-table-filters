@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.dataService.getProducts().subscribe((p: any) => {
+    this.dataService.getProducts().subscribe((p: Product) => {
       this.products = p;
     });
   }
