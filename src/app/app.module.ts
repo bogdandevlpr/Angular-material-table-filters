@@ -1,15 +1,17 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MaterialExampleModule} from '../material.module';
-import {TableBasicExample} from './table-basic-example';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatNativeDateModule} from '@angular/material/core';
-import {HttpClientModule} from '@angular/common/http';
+import { MaterialExampleModule } from '../material.module';
+import { ReusableTableComponent } from './reusable-table/reusable-table.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { HttpClientModule } from '@angular/common/http';
+import { CustomFilterComponent } from './custom-filter/custom-filter.component';
+import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [TableBasicExample],
+  declarations: [ReusableTableComponent, CustomFilterComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
@@ -19,7 +21,8 @@ import {HttpClientModule} from '@angular/common/http';
     MaterialExampleModule,
     ReactiveFormsModule,
   ],
+  exports: [ReusableTableComponent, CustomFilterComponent],
   providers: [],
-  bootstrap: [TableBasicExample],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
