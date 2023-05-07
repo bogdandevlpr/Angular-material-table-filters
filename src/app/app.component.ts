@@ -1,47 +1,56 @@
-import { Component } from '@angular/core';
-
-interface TableColumn {
-  key: string;
-  label: string;
-  filterType?: 'text' | 'date' | 'dropdown';
-  dropdownOptions?: any[];
-}
+import { Component, OnInit } from '@angular/core';
+import { DataService, Product } from './data.service';
+import { TableColumn } from './table/table.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  tableColumns: TableColumn[] = [
+export class AppComponent implements OnInit {
+  products: Product[] = [];
+  columns: TableColumn[] = [
     {
-      key: 'date',
-      label: 'Date',
-      filterType: 'date',
-    },
-    {
-      key: 'name',
-      label: 'Name',
+      key: 'productName',
+      label: 'Product Name',
       filterType: 'text',
     },
     {
-      key: 'category',
-      label: 'Category',
-      filterType: 'dropdown',
-      dropdownOptions: [
-        { value: 'A', label: 'Category A' },
-        { value: 'B', label: 'Category B' },
-        { value: 'C', label: 'Category C' },
-      ],
+      key: 'bestBeforeDate',
+      label: 'Best Before Date',
+      filterType: 'date',
+    },
+    {
+      key: 'qualityCode',
+      label: 'Quality Code',
+      filterType: 'text',
+    },
+    {
+      key: 'lotNumber',
+      label: 'Lot Number',
+      filterType: 'text',
     },
   ];
 
-  tableData = [
-    { date: '2023-05-01', name: 'Item 1', category: 'A' },
-    { date: '2023-05-02', name: 'Item 2', category: 'B' },
-    { date: '2023-05-03', name: 'Item 3', category: 'A' },
-    { date: '2023-05-04', name: 'Item 4', category: 'C' },
-    { date: '2023-05-05', name: 'Item 5', category: 'A' },
-    { date: '2023-05-06', name: 'Item 6', category: 'B' },
-  ];
+  constructor(private dataService: DataService) {}
+
+  ngOnInit(): void {
+    this.dataService.getProducts().subscribe((p: any) => {
+      this.products = p;
+    });
+  }
+
+  filterFn(data: Product, column: string, filterValue: any): boolean {
+    const value = data[column];
+    if (typeof filterValue === 'string') {
+      return value.toLowerCase().includes(filterValue.toLowerCase());
+    } else if (filterValue instanceof Date) {
+      return (
+        (value as Date).getFullYear() === filterValue.getFullYear() &&
+        (value as Date).getMonth() === filterValue.getMonth() &&
+        (value as Date).getDate() === filterValue.getDate()
+      );
+    }
+    return false;
+  }
 }

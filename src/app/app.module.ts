@@ -3,15 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialExampleModule } from '../material.module';
-import { ReusableTableComponent } from './reusable-table/reusable-table.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
-import { CustomFilterComponent } from './custom-filter/custom-filter.component';
+
 import { AppComponent } from './app.component';
+import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
-  declarations: [AppComponent, ReusableTableComponent, CustomFilterComponent],
+  declarations: [AppComponent, FilterDialogComponent, TableComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
@@ -21,7 +23,7 @@ import { AppComponent } from './app.component';
     MaterialExampleModule,
     ReactiveFormsModule,
   ],
-  exports: [ReusableTableComponent, CustomFilterComponent],
+  exports: [FilterDialogComponent, TableComponent],
   providers: [],
   bootstrap: [AppComponent],
 })
