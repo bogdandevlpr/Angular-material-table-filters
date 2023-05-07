@@ -6,11 +6,9 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./custom-filter.component.scss'],
 })
 export class CustomFilterComponent {
-  @Output() filterApplied = new EventEmitter<any>();
+  @Output() filterApplied = new EventEmitter<string>();
 
-  applyFilter() {
-    // Implement your custom filtering logic here
-    const filteredData = null; // filtered data based on your custom logic
-    this.filterApplied.emit(filteredData);
+  applyFilter(value: string) {
+    this.filterApplied.emit(value);
   }
 }
