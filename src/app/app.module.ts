@@ -11,7 +11,7 @@ import { CustomFilterComponent } from './custom-filter/custom-filter.component';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [ReusableTableComponent, CustomFilterComponent],
+  declarations: [AppComponent, ReusableTableComponent, CustomFilterComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
